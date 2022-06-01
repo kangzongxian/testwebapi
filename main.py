@@ -35,62 +35,62 @@ import time
 
 from bs4 import BeautifulSoup
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+# from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.options import Options
+# from webdriver_manager.chrome import ChromeDriverManager
 
 
-def getShopeePrices(item, mode):
-    item_word = '%20'.join(item.split(' '))
-    search_link = ""
-
-    # Relevancy
-    if mode == 0:
-        search_link = f"https://shopee.sg/search?keyword={item_word}&page=0&sortBy=relevancy"
-
-    # Price low to high
-    elif mode == 1:
-        search_link = f"https://shopee.sg/search?keyword={item_word}&order=asc&page=0&sortBy=price"
-
-    # Price high to low
-    elif mode == 2:
-        search_link = f"https://shopee.sg/search?keyword={item_word}&order=desc&page=0&sortBy=price"
-
-    # Initialise driver and go to website
-    chrome_options = Options()
-    chrome_options.add_argument('disable-notifications')
-    chrome_options.add_argument('--disable-infobars')
-    chrome_options.add_argument('start-maximized')
-    chrome_options.add_argument('headless')
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    driver.get(search_link)
-
-    # TODO: Not sure why need to sleep here, but if don't sleep got no results
-    time.sleep(2)
-
-    # Using Selenium
-    html = driver.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
-
-    # Using Bs4
-    soup = BeautifulSoup(html, "html.parser")
-    items = soup.find_all(name="div", class_="KMyn8J")
-    final_objects = []
-
-    for item in items:
-        name = item.find("div", class_="ie3A+n").get_text()
-        print(name)
-        price = item.find("span", class_="ZEgDH9").get_text()
-        print(price)
-        item = {
-            'name': name,
-            'price': price
-        }
-        final_objects.append(item)
-
-    return final_objects
+# def getShopeePrices(item, mode):
+#     item_word = '%20'.join(item.split(' '))
+#     search_link = ""
+#
+#     # Relevancy
+#     if mode == 0:
+#         search_link = f"https://shopee.sg/search?keyword={item_word}&page=0&sortBy=relevancy"
+#
+#     # Price low to high
+#     elif mode == 1:
+#         search_link = f"https://shopee.sg/search?keyword={item_word}&order=asc&page=0&sortBy=price"
+#
+#     # Price high to low
+#     elif mode == 2:
+#         search_link = f"https://shopee.sg/search?keyword={item_word}&order=desc&page=0&sortBy=price"
+#
+#     # Initialise driver and go to website
+#     chrome_options = Options()
+#     chrome_options.add_argument('disable-notifications')
+#     chrome_options.add_argument('--disable-infobars')
+#     chrome_options.add_argument('start-maximized')
+#     chrome_options.add_argument('headless')
+#     chrome_options.add_argument("--disable-dev-shm-usage")
+#     chrome_options.add_argument("--no-sandbox")
+#     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+#     driver.get(search_link)
+#
+#     # TODO: Not sure why need to sleep here, but if don't sleep got no results
+#     time.sleep(2)
+#
+#     # Using Selenium
+#     html = driver.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
+#
+#     # Using Bs4
+#     soup = BeautifulSoup(html, "html.parser")
+#     items = soup.find_all(name="div", class_="KMyn8J")
+#     final_objects = []
+#
+#     for item in items:
+#         name = item.find("div", class_="ie3A+n").get_text()
+#         print(name)
+#         price = item.find("span", class_="ZEgDH9").get_text()
+#         print(price)
+#         item = {
+#             'name': name,
+#             'price': price
+#         }
+#         final_objects.append(item)
+#
+#     return final_objects
 
 def getAmazonPrices(item):
 
@@ -212,12 +212,12 @@ def admin_only(f):
 
 @app.route('/<item>')
 def get_all_posts(item):
-    # items = getAmazonPrices(item)
-    # return json.dumps(items)
-
-    items = getShopeePrices(item, 0)
-    print(items)
+    items = getAmazonPrices(item)
     return json.dumps(items)
+
+    # items = getShopeePrices(item, 0)
+    # print(items)
+    # return json.dumps(items)
 
     # posts = BlogPost.query.all()
     # return render_template("index.html", all_posts=posts, current_user=current_user)
