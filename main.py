@@ -63,6 +63,8 @@ def getShopeePrices(item, mode):
     chrome_options.add_argument('--disable-infobars')
     chrome_options.add_argument('start-maximized')
     chrome_options.add_argument('headless')
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(search_link)
 
