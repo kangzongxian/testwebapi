@@ -32,7 +32,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import time
-# Bs4 working
+# Bs4 working now
 def getAmazonPrices(item):
 
     # Follow the template, words separated by spaces joined by +
