@@ -11,6 +11,7 @@ from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm
 from flask_gravatar import Gravatar
 import json
 from amazonproducts import get_amazon_products
+from lazadaproducts import get_lazada_products
 
 
 app = Flask(__name__)
@@ -83,8 +84,13 @@ def admin_only(f):
 
 
 @app.route('/amazon/<item>')
-def get_all_posts(item):
+def get_all_amazon(item):
     items = get_amazon_products(item)
+    return json.dumps(items)
+
+@app.route('/lazada/<item>')
+def get_all_lazada(item):
+    items = get_lazada_products(item)
     return json.dumps(items)
 
 

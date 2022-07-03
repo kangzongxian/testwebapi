@@ -6,9 +6,11 @@ def get_amazon_products(item):
     """
     This function is responsible for getting a list of products based on an item search query
     :param item: the item to be searched
-    :return: an array of relevant products based on the search query, each product will have its name (string),
-    price (float), url (string) and image (string)
+    :return: an array of relevant products based on the search query, each product will have its
+    platform (string), name (string), price (float), url (string) and image (string)
     """
+
+    PLATFORM = "Amazon"
 
     # Follow the template specified by the website, words separated by spaces joined by +
     item_word = '+'.join(item.split(' '))
@@ -51,6 +53,7 @@ def get_amazon_products(item):
 
         # Create an object with the necessary data that we need
         new_item = {
+            "platform": PLATFORM,
             'name': name,
             'price': float(price[2:]),
             'url': url,
@@ -69,7 +72,7 @@ def get_amazon_products(item):
 
     return final_objects
 
-print(get_amazon_products("biscuits"))
+# print(get_amazon_products("biscuits"))
 
 # TODO: This is responsible for scraping the individual items to get updated price
 # TODO: Not sure what the return value should be yet
