@@ -48,6 +48,7 @@ def get_amazon_products(item):
         if price == None:
             continue
         price = price.get_text()
+        price = price.replace("$", "").replace(",", "").replace("S", "")
         link = item.find("a", class_="a-link-normal", href=True)
         url = f"https://amazon.sg/{link['href']}"
 
@@ -55,7 +56,7 @@ def get_amazon_products(item):
         new_item = {
             "platform": PLATFORM,
             'name': name,
-            'price': price,
+            'price': float(price),
             'url': url,
             'image': image
         }
