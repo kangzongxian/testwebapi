@@ -55,7 +55,7 @@ def get_amazon_products(item):
         new_item = {
             "platform": PLATFORM,
             'name': name,
-            'price': float(price[2:]),
+            'price': price,
             'url': url,
             'image': image
         }
