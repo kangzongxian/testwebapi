@@ -72,7 +72,6 @@ def get_amazon_products(item):
 
     return final_objects
 
-# print(get_amazon_products("biscuits"))
 
 # TODO: This is responsible for scraping the individual items to get updated price
 # TODO: Not sure what the return value should be yet
@@ -96,7 +95,5 @@ def get_single_amazon_product(url):
     price += item_decimal_price
 
     return float(price)
-
-# print(get_single_amazon_product("https://www.amazon.sg//All-Time-Assorted-Biscuits-524-7/dp/B07YNPXNDW"))
 
 

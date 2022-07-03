@@ -51,8 +51,6 @@ def get_lazada_products(item):
     return return_products
 
 
-# print(get_lazada_products("toys"))
-
 # TODO: This is responsible for scraping the individual items to get updated price
 # TODO: Not sure what the return value should be yet
 def get_single_lazada_product(url):
@@ -69,7 +67,3 @@ def get_single_lazada_product(url):
     soup = BeautifulSoup(item_website, "html.parser")
     price = soup.find(name="span", class_="pdp-price").get_text()
     return float(price[1:])
-
-print(get_single_lazada_product("https://www.lazada.sg/products/ready-stock-"
-                                "dancing-cactus-dencing-cactus-cactus-plush-toy-talk-dancing-toy-song"
-                                "-plush-early-childhood-christmas-i2140856908.html"))
