@@ -34,7 +34,7 @@ def get_qooten_products(item):
         name = name_tag.get_text()
         url = name_tag.find(name="a")['href']
         price = item_prices[i].find(name="div", class_="prc").find(name="strong").get_text()
-        price = price.replace("$", "").replace(",", "").replace("S", "")
+        price = price.replace("$", "").replace(",", "").replace("S", "").replace("U", "")
         image = item_images[i].find(name="div", class_="inner").find("img")['gd_src']
 
         new_product = {
