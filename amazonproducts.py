@@ -94,6 +94,6 @@ def get_single_amazon_product(url):
     item_decimal_price = soup.find("span", class_="a-price-fraction").getText()
     price += item_decimal_price
 
-    return float(price)
+    return float(price.strip(','))
 
 

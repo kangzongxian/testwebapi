@@ -12,6 +12,7 @@ from flask_gravatar import Gravatar
 import json
 from amazonproducts import get_amazon_products
 from lazadaproducts import get_lazada_products
+from qootenproducts import get_qooten_products
 
 
 app = Flask(__name__)
@@ -91,6 +92,11 @@ def get_all_amazon(item):
 @app.route('/lazada/<item>')
 def get_all_lazada(item):
     items = get_lazada_products(item)
+    return json.dumps(items)
+
+@app.route('/qooten/<item>')
+def get_all_qooten(item):
+    items = get_qooten_products(item)
     return json.dumps(items)
 
 
