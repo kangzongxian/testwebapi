@@ -39,7 +39,7 @@ def get_qooten_products(item):
         new_product = {
             'platform': PLATFORM,
             'name': name,
-            'price': float(price[2:]),
+            'price': price,
             'image': image,
             'url': url
         }
@@ -66,4 +66,4 @@ def get_single_qooten_product(url):
     soup = BeautifulSoup(item_website, "html.parser")
     price = soup.find(id="qprice_span").get_text()
 
-    return float(price[2:])
+    return price
