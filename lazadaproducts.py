@@ -66,4 +66,4 @@ def get_single_lazada_product(url):
 
     soup = BeautifulSoup(item_website, "html.parser")
     price = soup.find(name="span", class_="pdp-price").get_text()
-    return float(price[1:])
+    return [float(price[1:])]

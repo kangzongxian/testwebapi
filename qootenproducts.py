@@ -67,4 +67,4 @@ def get_single_qooten_product(url):
     soup = BeautifulSoup(item_website, "html.parser")
     price = soup.find(id="qprice_span").get_text()
 
-    return float(price[2:])
+    return [float(price[2:])]
