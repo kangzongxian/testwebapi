@@ -5,9 +5,10 @@ from functools import wraps
 from flask_login import current_user
 from flask_gravatar import Gravatar
 import json
-from amazonproducts import get_amazon_products
-from lazadaproducts import get_lazada_products
-from qootenproducts import get_qooten_products
+from amazonproducts import get_amazon_products, get_single_amazon_product
+from lazadaproducts import get_lazada_products, get_single_lazada_product
+from qootenproducts import get_qooten_products, get_single_qooten_product
+
 
 
 app = Flask(__name__)
@@ -34,15 +35,32 @@ def get_all_amazon(item):
     items = get_amazon_products(item)
     return json.dumps(items)
 
+@app.route('/amazon/single/<path:url>')
+def get_single_amazon(url):
+    item = get_single_amazon_product(url)
+    return json.dumps(item)
+
 @app.route('/lazada/<item>')
 def get_all_lazada(item):
     items = get_lazada_products(item)
     return json.dumps(items)
 
+@app.route('/lazada/single/<path:url>')
+def get_single_lazada(url):
+    item = get_single_lazada_product(url)
+    return json.dumps(item)
+
 @app.route('/qooten/<item>')
 def get_all_qooten(item):
     items = get_qooten_products(item)
     return json.dumps(items)
+
+@app.route('/qooten/single/<path:url>')
+def get_single_qooten(url):
+    item = get_single_qooten_product(url)
+    return json.dumps(item)
+
+
 
 
 

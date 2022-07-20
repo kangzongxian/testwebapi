@@ -67,4 +67,6 @@ def get_single_qooten_product(url):
     soup = BeautifulSoup(item_website, "html.parser")
     price = soup.find(id="qprice_span").get_text()
 
-    return price
+    return float(price[2:])
+
+print(get_single_qooten_product("https://www.qoo10.sg/item/OKONZ-IPHONE-13-PRO-MAX-SAMSUNG-S22-S21-IPHONE-12-SCREEN-PROTECTOR/537166891?banner_no=1305330"))
