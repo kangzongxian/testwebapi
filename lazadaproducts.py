@@ -51,8 +51,6 @@ def get_lazada_products(item):
     return return_products
 
 
-# TODO: This is responsible for scraping the individual items to get updated price
-# TODO: Not sure what the return value should be yet
 def get_single_lazada_product(url):
     """
     This function is responsible for getting the updated price of a single product

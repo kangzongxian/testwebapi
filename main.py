@@ -10,9 +10,8 @@ from lazadaproducts import get_lazada_products, get_single_lazada_product
 from qootenproducts import get_qooten_products, get_single_qooten_product
 
 
-
+# This file is responsible for the overall functions of the API
 app = Flask(__name__)
-#TODO: Create a env variable if you want to upload online
 app.config['SECRET_KEY'] = 'YOUR KEY'
 ckeditor = CKEditor(app)
 Bootstrap(app)

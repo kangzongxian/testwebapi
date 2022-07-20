@@ -74,8 +74,6 @@ def get_amazon_products(item):
     return final_objects
 
 
-# TODO: This is responsible for scraping the individual items to get updated price
-# TODO: Not sure what the return value should be yet
 def get_single_amazon_product(url):
     """
     This function is responsible for getting the updated price of a single product

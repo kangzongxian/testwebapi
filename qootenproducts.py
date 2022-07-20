@@ -48,8 +48,6 @@ def get_qooten_products(item):
 
     return products
 
-# TODO: This is responsible for scraping the individual items to get updated price
-# TODO: Not sure what the return value should be yet
 def get_single_qooten_product(url):
     """
     This function is responsible for getting the updated price of a single product
