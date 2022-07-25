@@ -32,7 +32,7 @@ def get_qooten_products(item):
     for i in range(len(item_images)):
         name_tag= item_names[i].find(name="div", class_="sbj")
         name = name_tag.get_text()
-        url = name_tag.find(name="a")['href']
+        url = name_tag.find(name="a")['href'].replace(" ","")
         price = item_prices[i].find(name="div", class_="prc").find(name="strong").get_text()
         price = price.replace("$", "").replace(",", "").replace("S", "").replace("U", "")
         image = item_images[i].find(name="div", class_="inner").find("img")['gd_src']
@@ -63,6 +63,6 @@ def get_single_qooten_product(url):
 
 
     soup = BeautifulSoup(item_website, "html.parser")
-    price = soup.find(id="qprice_span").get_text()
+    price = soup.find(id="qprice_span").get_text().replace("$", "")
 
     return [float(price[2:])]
