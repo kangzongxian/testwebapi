@@ -11,6 +11,11 @@ def get_amazon_products(item):
     """
 
     PLATFORM = "Amazon"
+    proxies = {
+        "http": "http://IP:Port",  # HTTP
+        "https": "https://IP:Port",  # HTTPS
+        'http': 'socks5://user:pass@IP:Port'  # SOCKS5
+    }
 
     # Follow the template specified by the website, words separated by spaces joined by +
     item_word = '+'.join(item.split(' '))
@@ -19,7 +24,7 @@ def get_amazon_products(item):
                       f"sprefix=water+bott%2Caps%2C310&ref=nb_sb_noss_2"
 
     # Send request to get the data
-    item_data = requests.get(search_link)
+    item_data = requests.get(search_link, proxies=proxies)
     item_website = item_data.text
 
     soup = BeautifulSoup(item_website, "html.parser")
